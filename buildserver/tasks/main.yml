@@ -1,2 +1,21 @@
 ---
 # tasks file for buildserver
+- name: Cloning Dockerfile to build
+  git:
+    repo: http://193.122.59.82:3000/petrovvitalik/Ansible-1-remastered.git
+    dest: /root/build/
+    force: yes
+
+- name: Login to Dockerhub
+  docker_login:
+    username: "{{ login }}"
+    email: "{{ email }}"
+    password: "{{ password }}"
+
+- name: Build an image and push to Dockerhub
+  docker_image:
+    path: /root/build/
+    name: webapp-remastered
+    repository: petrovitalik/webapp-remastered
+    tag: latest
+    push: yes

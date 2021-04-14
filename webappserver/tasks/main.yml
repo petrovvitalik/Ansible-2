@@ -1,2 +1,9 @@
 ---
 # tasks file for webappserver
+- name: Download image and Launch web app container
+  docker_container:
+    name: webapp-remastered
+    image: petrovitalik/webapp-remastered
+    state: started
+    ports:
+      - "8080:8080"
