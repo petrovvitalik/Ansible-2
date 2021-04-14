@@ -1,0 +1,19 @@
+---
+- name: web-server configuration
+  hosts: web
+  become: yes
+
+  roles:
+    - common
+    - webserver
+    - security
+
+
+- name: builder configuration
+  hosts: builder
+  become: yes
+
+  roles:
+    - common
+    - security
+
